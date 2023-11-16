@@ -1,0 +1,44 @@
+﻿@model GameViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">-Exercise 4-</h1>
+</div>
+
+<div>
+    <p>Write some code that evolves generations through the "game of  life".</p>
+    <p>The input will be a game board of cells, either alive (1) or dead (0).</p>
+    <p>The code should take this board and create a new board for the next generation based on the following rules:</p>
+    <ol>
+        <li>Any live cell with fewer than two live neighbours dies (underpopulation)</li>
+        <li>Any live cell with two or three live neighbours lives on to the next generation (survival)</li>
+        <li>Any live cell with more than three live neighbours dies (overcrowding)</li>
+        <li>Any dead cell with exactly three live neighbours becomes a live cell (reproduction)</li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="col">
+        <p>This game board as input:</p>
+        @using (Html.BeginForm("Process", "Home", FormMethod.Post))
+        {
+            <div class="row p-2">
+                @Html.TextAreaFor(x => x.Input,10, 40, null)
+                @Html.ValidationMessageFor(x => x.Input, null, new { @class = "text-danger"})
+            </div>
+
+            <button type="submit" class="px-5">Try</button>
+        }
+    </div>
+
+    <div class="col">
+        <p>Will have a subsequent generation of:</p>
+        <div class="row p-2">
+            <textarea cols="40" rows="10">@Model.Result</textarea>
+        </div>
+    </div>
+</div>
+
